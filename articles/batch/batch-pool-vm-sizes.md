@@ -1,20 +1,9 @@
 ---
-title: Choose VM sizes for pools - Azure Batch | Microsoft Docs
+title: Choose VM sizes for pools
 description: How to choose from the available VM sizes for compute nodes in Azure Batch pools
-services: batch
-documentationcenter: ''
-author: laurenhughes
-manager: jeconnoc
-editor: ''
-
-ms.assetid: 
-ms.service: batch
-ms.workload: 
-ms.tgt_pltfrm: na
-ms.devlang: na
 ms.topic: article
-ms.date: 05/28/2019
-ms.author: lahugh
+ms.date: 09/12/2019
+ms.author: labrenne
 ms.custom: seodec18
 
 ---
@@ -34,35 +23,40 @@ There are a few exceptions and limitations to choosing a VM size:
 
 Batch pools in the Virtual Machine configuration support almost all VM sizes ([Linux](../virtual-machines/linux/sizes.md), [Windows](../virtual-machines/windows/sizes.md)). See the following table to learn more about supported sizes and restrictions.
 
-Any promotional or preview VM sizes not listed aren't guaranteed for support. 
+| VM series  | Supported sizes |
+|------------|---------|
+| Basic A | All sizes *except* Basic_A0 (A0) |
+| A | All sizes *except* Standard_A0 |
+| Av2 | All sizes |
+| B | None |
+| DC | None |
+| Dv2, DSv2 | All sizes |
+| Dv3, Dsv3 | All sizes |
+| Dav4, Dasv4 | None - not yet available |
+| Ev3, Esv3 | All sizes, except for E64is_v3 and E64i_v3 |
+| Eav4, Easv4 | None - not yet available |
+| F, Fs | All sizes |
+| Fsv2 | All sizes |
+| G, Gs | All sizes |
+| H | All sizes |
+| HB<sup>1</sup> | All sizes |
+| HBv2<sup>1</sup> | All sizes |
+| HC<sup>1</sup> | All sizes |
+| Ls | All sizes |
+| Lsv2 | None - not yet available |
+| M<sup>1</sup> | All sizes, except for M64, M64m, M128, M128m |
+| Mv2 | None - not yet available |
+| NC | All sizes |
+| NCv2<sup>1</sup> | All sizes |
+| NCv3<sup>1</sup> | All sizes |
+| ND<sup>1</sup> | All sizes |
+| NDv2<sup>1</sup> | None - not yet available |
+| NV | All sizes |
+| NVv3<sup>1</sup> | All sizes |
+| NVv4 | None |
+| SAP HANA | None |
 
-| VM series  | Supported sizes | Allocation mode |
-|------------|---------|-----------------|
-| Basic A-series | All sizes *except* Basic_A0 (A0) | Any |
-| A-series | All sizes *except* Standard_A0 | Any |
-| Av2-series | All sizes | Any |
-| B-series | None | N/A |
-| DC-series | None | N/A |
-| Dv2, Dsv2-series | All sizes | Any |
-| Dv3, Dsv3-series | All sizes | Any |
-| [Memory optimized sizes](../virtual-machines/linux/sizes-memory.md) | None | N/A |
-| Fsv2-series | All sizes | Any |
-| H-series | All sizes | Any |
-| Hb-series | All sizes | User subscription mode |
-| Hc-series | All sizes | User subscription mode |
-| Ls-series | All sizes | Any |
-| Lsv2-series | None | N/A |
-| M-series | Standard_M64ms (low-priority only), Standard_M128s (low-priority only) | Any |  
-| NCv2-series<sup>2</sup> | All sizes | Any |
-| NCv3-series<sup>2</sup> | All sizes | Any |
-| ND-series<sup>2</sup> | All sizes | Any |
-| NDv2-series | All sizes | User subscription mode |
-| NV-series | All sizes | Any |
-| NVv3-series | None | N/A |
-| SAP HANA | None | All |
-
-<sup>1</sup> The ExtraSmall, Standard_A1_v2, Standard_A2_v2, and Standard_A2m_v2 sizes are not available in Cloud Services.
-<sup>2</sup> These VM sizes can be allocated in Batch pools in Virtual Machine configuration, but you must request a specific [quota increase](batch-quota-limit.md#increase-a-quota).
+<sup>1</sup> These VM sizes can be allocated in Batch pools in Virtual Machine configuration, but you must create a new Batch account and request a specific [quota increase](batch-quota-limit.md#increase-a-quota). This limitation will be removed once vCPU quota per VM series is fully supported for Batch accounts.
 
 ### Pools in Cloud Service configuration
 
